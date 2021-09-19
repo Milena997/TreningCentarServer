@@ -1,0 +1,164 @@
+package rs.ac.bg.fon.ai.kontroler;
+
+import java.util.List;
+
+import rs.ac.bg.fon.ai.dbb.DBBroker;
+import rs.ac.bg.fon.ai.domen.Clanarina;
+import rs.ac.bg.fon.ai.domen.Polaznik;
+import rs.ac.bg.fon.ai.domen.TipClanarine;
+import rs.ac.bg.fon.ai.domen.Trener;
+import rs.ac.bg.fon.ai.domen.Trening;
+import rs.ac.bg.fon.ai.sopracije.OpstaSO;
+import rs.ac.bg.fon.ai.sotrening.Login;
+import rs.ac.bg.fon.ai.sotrening.SacuvajListuTreninga;
+import rs.ac.bg.fon.ai.sotrening.SacuvajPolaznika;
+import rs.ac.bg.fon.ai.sotrening.VratiClanarine;
+import rs.ac.bg.fon.ai.sotrening.VratiPolaznike;
+import rs.ac.bg.fon.ai.transkript.ServerskiOdgovor;
+
+public class Kontroler {
+	private static Kontroler instance;
+    DBBroker db;
+
+    private Kontroler() {
+        db = new DBBroker();
+    }
+
+    public static Kontroler getInstance() {
+        if (instance == null) {
+            instance = new Kontroler();
+        }
+        return instance;
+    }
+
+    public ServerskiOdgovor login() {
+        
+        OpstaSO oso = new Login();
+        return oso.izvrsiOperaciju(null);
+
+//    List<Trener> lista = new ArrayList<>();
+//        try {
+//            db.ucitajDriver();
+//            db.otvoriKonekciju();
+//
+//            lista = db.vratiSveTrenere();
+//            if (lista == null) {
+//                throw new Exception("Lista je prazna");
+//            }
+//
+//            db.zatvoriKonekciju();
+//        } catch (ClassNotFoundException ex) {
+//            Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (Exception ex) {
+//              Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+//          }
+//        return lista;
+
+    }
+
+    public ServerskiOdgovor sacuvajPolaznika(Polaznik p) {
+          OpstaSO oso = new SacuvajPolaznika();
+        return oso.izvrsiOperaciju(p);
+//      boolean sacuvano = false;
+//        System.out.println(p);
+//        try {
+//            db.ucitajDriver();
+//            db.otvoriKonekciju();
+//           
+//               sacuvano=db.sacuvajPolaznika(p);
+//               if(sacuvano==false){
+//                   System.out.println("nije sacuvan kontroler javio " + p);
+//               }
+//                System.out.println("\n polaznk je sacuvan " + p);
+//            
+//           
+//        } catch (ClassNotFoundException ex) {
+//            Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return sacuvano; 
+
+      
+    }
+
+    public ServerskiOdgovor vratiPolaznike() {
+           OpstaSO oso = new VratiPolaznike();
+        return oso.izvrsiOperaciju(null);
+//   List<Polaznik> lista = new ArrayList<>();
+//        try {
+//            db.ucitajDriver();
+//            db.otvoriKonekciju();
+//
+//            lista = db.vratiSvePolaznike();
+//            if (lista == null) {
+//                throw new Exception("Lista je prazna");
+//            }
+//
+//            db.zatvoriKonekciju();
+//        } catch (ClassNotFoundException ex) {
+//            Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (Exception ex) {
+//              Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+//          }
+//        return lista;
+
+     
+    }
+
+    public ServerskiOdgovor vratiClanarine() {
+         OpstaSO oso = new VratiClanarine();
+        return oso.izvrsiOperaciju(null);
+//   List<Clanarina> lista = new ArrayList<>();
+//        try {
+//            db.ucitajDriver();
+//            db.otvoriKonekciju();
+//
+//            lista = db.vratiSveClanarine();
+//            if (lista == null) {
+//                throw new Exception("Lista je prazna");
+//            }
+//
+//            db.zatvoriKonekciju();
+//        } catch (ClassNotFoundException ex) {
+//            Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (Exception ex) {
+//              Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+//          }
+//        return lista;
+       
+    }
+
+    public ServerskiOdgovor sacuvajListuTreninga(List<Trening> listTr) {
+        OpstaSO oso = new SacuvajListuTreninga();
+        return oso.izvrsiOperaciju(listTr);
+//    boolean sacuvano = false;
+//        try {
+//            db.ucitajDriver();
+//            db.otvoriKonekciju();
+//            for (Trening z : listTr) {
+//               sacuvano=db.sacuvajTrening(z);
+//               if(sacuvano==false){
+//                   System.out.println("nije sacuvan kontroler javio " + z);
+//               }
+//                System.out.println("\n Angazman je sacuvan " + z);
+//            }
+//           
+//        } catch (ClassNotFoundException ex) {
+//            Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return sacuvano;
+
+        
+    }
+
+
+}
