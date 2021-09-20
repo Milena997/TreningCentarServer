@@ -8,6 +8,7 @@ import rs.ac.bg.fon.ai.transkript.ServerskiOdgovor;
 
 public abstract class OpstaSO {
 	
+	
 	 public ServerskiOdgovor izvrsiOperaciju(Object object) {
 	        ServerskiOdgovor so = new ServerskiOdgovor();
 	        try {
