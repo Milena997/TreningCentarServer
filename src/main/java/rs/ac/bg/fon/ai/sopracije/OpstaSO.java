@@ -5,9 +5,22 @@ import java.util.logging.Level;
 
 import rs.ac.bg.fon.ai.dbb.DBBroker;
 import rs.ac.bg.fon.ai.transkript.ServerskiOdgovor;
+/**
+ * Ovo je apstraktna klasa koju nasledjuju sve SO.
+
+ *@author Milena
+ */
+
+
 
 public abstract class OpstaSO {
-	
+	/**
+	 * Otvara konekciju sa bazom, izvrsava konkretnu operaciju .
+	 * 
+	 * @param object Objekat nad kojim se izvrsava operacija kao Object.
+	 * @return Odgovor od servera kao ServerskiOdgovor.
+	 * 
+	 */
 	
 	 public ServerskiOdgovor izvrsiOperaciju(Object object) {
 	        ServerskiOdgovor so = new ServerskiOdgovor();
@@ -32,6 +45,14 @@ public abstract class OpstaSO {
 	        return so;
 	    }
 
+	 /**
+		 * Metoda koja je zasluzna za izvrsavanje konkretne sistemske operacije.
+		 * 
+		 * @param object Objekat kao Object.
+		 * @return Odgovor od servera kao ServerskiOdgovor.
+		 * @throws java.lang.Exception ukoliko dodje do greske u toku izvrsavanja
+		 *                             operacije.
+		 */
 	   
 	    protected abstract ServerskiOdgovor izvrsiKonkretnuOperaciju(Object object) throws Exception;
 
