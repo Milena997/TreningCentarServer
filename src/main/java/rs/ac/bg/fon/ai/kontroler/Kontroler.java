@@ -1,6 +1,13 @@
 package rs.ac.bg.fon.ai.kontroler;
 
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
+
+import org.json.JSONObject;
+
+import com.google.gson.JsonParser;
 
 import rs.ac.bg.fon.ai.dbb.DBBroker;
 import rs.ac.bg.fon.ai.domen.Clanarina;
@@ -15,6 +22,11 @@ import rs.ac.bg.fon.ai.sotrening.SacuvajPolaznika;
 import rs.ac.bg.fon.ai.sotrening.VratiClanarine;
 import rs.ac.bg.fon.ai.sotrening.VratiPolaznike;
 import rs.ac.bg.fon.ai.transkript.ServerskiOdgovor;
+
+
+import org.json.JSONObject;
+
+import com.google.gson.JsonParser;
 
 public class Kontroler {
 	private static Kontroler instance;
@@ -60,7 +72,11 @@ public class Kontroler {
 
     public ServerskiOdgovor sacuvajPolaznika(Polaznik p) {
           OpstaSO oso = new SacuvajPolaznika();
-        return oso.izvrsiOperaciju(p);
+      	ServerskiOdgovor so=oso.izvrsiOperaciju(p);
+        if(so.isUspesno()) {
+        	sacuvajUJSON(p);
+        }
+        return so;
 //      boolean sacuvano = false;
 //        System.out.println(p);
 //        try {
@@ -159,6 +175,35 @@ public class Kontroler {
 
         
     }
+    
+    
+    private void sacuvajUJSON(Polaznik p) {
+		JSONObject polaznikSacuvan = new JSONObject();
+		 polaznikSacuvan.put("ID:", p.getPid());
+      polaznikSacuvan.put("Polaznik:", p.getIme());
+         polaznikSacuvan.put("zenski:",p.getPol());
+        polaznikSacuvan.put("Datum rodjenja: ", p.getDatumRodj());
+        polaznikSacuvan.put("Telefon:",p.getTel());
+        polaznikSacuvan.put("Adresa:", p.getAdresa());
+       
+        
+        JsonParser jsonParser = new JsonParser();
+
+        try {
+            Object obj = jsonParser.parse(new FileReader("C:\\Users\\Milena\\eclipse-workspace\\TreningCentarServer\\sacuvani.json"));
+            
+
+            FileWriter file = new FileWriter("C:\\Users\\Milena\\eclipse-workspace\\TreningCentarServer\\sacuvani.json",true);
+            file.write(polaznikSacuvan.toString());
+            file.flush();
+            file.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+		
+	}
 
 
 }
